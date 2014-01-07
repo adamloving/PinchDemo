@@ -24,9 +24,8 @@ CGFloat _lastScale = 1.0;
     
     CGFloat scale = 1.0 - (_lastScale - [sender scale]);
     _lastScale = [sender scale];
-    CGAffineTransform currentTransform = self.imageView.transform;
-    CGAffineTransform newTransform = CGAffineTransformScale(currentTransform, scale, scale);
-    [self.imageView setTransform:newTransform];
+    CATransform3D newTransform = CATransform3DScale(self.imageView.layer.transform, scale, scale, 1);
+    self.imageView.layer.transform = newTransform;
     NSLog(@"center: %@", NSStringFromCGPoint(self.imageView.center));
 }
 
